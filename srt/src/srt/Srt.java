@@ -28,9 +28,8 @@ public class Srt {
         int[] turnaroundTime = new int[n];
         int[] remainingTime = new int[n];
         int[] processNum = new int[n];
-        int totalTime = 0;
         int completed = 0;
-        float avgWaitingTime = 0, avgTurnaroundTime = 0;
+        int totalWaitingTime = 0, totalTurnaroundTime = 0;
         
         System.out.println("Enter the arrival time and burst time for each process: ");
         for (int i = 0; i < n; i++) {
@@ -39,7 +38,6 @@ public class Srt {
             arrivalTime[i] = sc.nextInt();
             burstTime[i] = sc.nextInt();
             remainingTime[i] = burstTime[i];
-            totalTime += burstTime[i];
         }
         
         
@@ -69,11 +67,11 @@ public class Srt {
         System.out.println("Process\tArrival Time\tBurst Time\tCompletion Time\tWaiting Time\tTurnaround Time");
         for (int i = 0; i < n; i++) {
             System.out.println(processNum[i] + "\t\t" + arrivalTime[i] + "\t\t" + burstTime[i] + "\t\t" + completionTime[i] + "\t\t" + waitingTime[i] + "\t\t" + turnaroundTime[i]);
-            avgWaitingTime += waitingTime[i];
-            avgTurnaroundTime += turnaroundTime[i];
+            totalWaitingTime += waitingTime[i];
+            totalTurnaroundTime += turnaroundTime[i];
         }
-        avgWaitingTime /= n;
-        avgTurnaroundTime /= n;
+        double avgWaitingTime = (double) totalWaitingTime / n;
+        double avgTurnaroundTime = (double) totalTurnaroundTime / n;
         System.out.println("Average Waiting Time: " + avgWaitingTime);
         System.out.println("Average Turnaround Time: " + avgTurnaroundTime);
     }
